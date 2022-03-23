@@ -21,7 +21,7 @@ void ZText::ParseRawData()
 	const auto& rawData = parent->GetRawData();
 	uint32_t currentPtr = StringHelper::StrToL(registeredAttributes.at("CodeOffset").value, 16);
 
-	std::vector<uint8_t> codeData;
+	std::vector<uint8_t> codeData = File::ReadAllBytes((Globals::Instance->baseRomPath / "code").string());
 
 	if (Globals::Instance->fileMode == ZFileMode::ExtractDirectory)
 		codeData = Globals::Instance->GetBaseromFile("code");
@@ -40,7 +40,7 @@ void ZText::ParseRawData()
 
 		unsigned char c = rawData[msgPtr];
 		unsigned int extra = 0;
-		bool stop = false;
+    bool stop = false;
 
 		while ((c != '\0' && !stop) || extra > 0)
 		{
