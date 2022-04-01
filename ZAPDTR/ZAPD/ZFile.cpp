@@ -88,7 +88,6 @@ ZFile::~ZFile()
 
 void ZFile::ParseXML(tinyxml2::XMLElement* reader, const std::string& filename)
 {
-  std::cout << "C++ filename = " << filename << std::endl;
 	assert(mode != ZFileMode::Invalid);
 
 	if (filename == "")
