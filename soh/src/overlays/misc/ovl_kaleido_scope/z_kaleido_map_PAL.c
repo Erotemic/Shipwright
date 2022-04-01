@@ -506,7 +506,7 @@ void KaleidoScope_DrawWorldMap(GlobalContext* globalCtx, GraphicsContext* gfxCtx
 
         gSPVertex(POLY_KAL_DISP++, &pauseCtx->mapPageVtx[220], 28, 0);
 
-        for (j = i = 0; i < 6; i++, t++, j += 4) 
+        for (j = i = 0; i < 6; i++, t++, j += 4)
         {
             gDPLoadTextureBlock(POLY_KAL_DISP++, (u8*)ResourceMgr_LoadTexByName(gWorldMapImageTex) + t * 216 * 9, G_IM_FMT_CI, G_IM_SIZ_8b, 216, 9,
                                 0, G_TX_WRAP | G_TX_NOMIRROR, G_TX_WRAP | G_TX_NOMIRROR, G_TX_NOMASK, G_TX_NOMASK,

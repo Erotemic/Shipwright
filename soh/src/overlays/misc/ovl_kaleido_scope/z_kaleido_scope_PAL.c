@@ -1609,7 +1609,9 @@ void KaleidoScope_DrawInfoPanel(GlobalContext* globalCtx) {
     gDPSetPrimColor(POLY_KAL_DISP++, 0, 0, 90, 100, 130, 255);
     gSPVertex(POLY_KAL_DISP++, &pauseCtx->infoPanelVtx[0], 16, 0);
 
-    gSPDisplayList(POLY_KAL_DISP++, gItemNamePanelDL);
+    // Replacing the KAL with OPA fixes the kaleidoscope bug on linux. I dont know why.
+    // gSPDisplayList(POLY_KAL_DISP++, gItemNamePanelDL);
+    gSPDisplayList(POLY_OPA_DISP++, gItemNamePanelDL);
 
     if ((pauseCtx->cursorSpecialPos == PAUSE_CURSOR_PAGE_LEFT) && (pauseCtx->unk_1E4 == 0)) {
         gDPSetPrimColor(POLY_KAL_DISP++, 0, 0, D_808321A0, D_808321A2, D_808321A4, D_808321A6);
