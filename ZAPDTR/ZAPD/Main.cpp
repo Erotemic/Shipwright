@@ -363,6 +363,10 @@ int main(int argc, char* argv[])
 			{
 				bool parseSuccessful;
 
+        // Need to make a fake worker for single threaded
+        int workerID = 0;
+		    Globals::Instance->workerData[workerID] = new FileWorker();
+
 				for (auto& extFile : Globals::Instance->cfg.externalFiles)
 				{
 					fs::path externalXmlFilePath =
@@ -375,7 +379,7 @@ int main(int argc, char* argv[])
 					}
 
 					parseSuccessful = Parse(externalXmlFilePath, Globals::Instance->baseRomPath,
-					                        extFile.outPath, ZFileMode::ExternalFile, 0);
+					                        extFile.outPath, ZFileMode::ExternalFile, workerID);
 
 					if (!parseSuccessful)
 						return 1;
@@ -383,7 +387,7 @@ int main(int argc, char* argv[])
 
 				parseSuccessful =
 					Parse(Globals::Instance->inputPath, Globals::Instance->baseRomPath,
-				          Globals::Instance->outputPath, fileMode, 0);
+				          Globals::Instance->outputPath, fileMode, workerID);
 				if (!parseSuccessful)
 					return 1;
 			}
