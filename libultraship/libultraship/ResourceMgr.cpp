@@ -130,7 +130,7 @@ namespace Ship {
 				}
 			}
 
-			if (!ToLoad->File->bHasLoadError)
+			if (!ToLoad->file->bHasLoadError)
 			{
         auto UnmanagedRes = ResourceLoader::LoadResource(ToLoad->file);
         if (UnmanagedRes != nullptr)
@@ -165,10 +165,10 @@ namespace Ship {
 			else
 			{
 				ToLoad->bHasResourceLoaded = false;
-				ToLoad->Resource = nullptr;
+				ToLoad->resource = nullptr;
 			}
 
-			ToLoad->ResourceLoadNotifier.notify_all();
+			ToLoad->resourceLoadNotifier.notify_all();
 		}
 
 		SPDLOG_INFO("Resource Manager LoadResourceThread ended");
@@ -259,7 +259,7 @@ namespace Ship {
 			std::shared_ptr<File> FileData = LoadFile(FilePath);
 			Promise->file = FileData;
 
-			if (Promise->File->bHasLoadError)
+			if (Promise->file->bHasLoadError)
 			{
 				Promise->bHasResourceLoaded = true;
 			}

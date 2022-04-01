@@ -4,6 +4,19 @@
 #include <string>
 #include <vector>
 
+// Reference:
+// https://stackoverflow.com/questions/18298280/how-to-declare-a-variable-as-thread-local-portably
+#ifdef __GNUC__
+# define thread_local __thread
+#elif __STDC_VERSION__ >= 201112L
+# define thread_local _Thread_local
+#elif defined(_MSC_VER)
+# define thread_local __declspec(thread)
+#else
+# error Cannot define thread_local
+#endif
+
+
 class OutputFormatter
 {
 private:
@@ -25,7 +38,7 @@ private:
 
 	void Flush();
 
-	static __declspec(thread) OutputFormatter* Instance;
+	static thread_local OutputFormatter* Instance;
 	static int WriteStatic(const char* buf, int count);
 
 public:

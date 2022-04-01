@@ -221,7 +221,7 @@ void WarningHandler::ExtractedFilePreamble(const ZFile *parent, const ZResource*
     if (res != nullptr) {
         fprintf(stderr, "resource '%s' at ", res->GetName().c_str());
     }
-    fprintf(stderr, "offset 0x%06X: \n\t", offset); 
+    fprintf(stderr, "offset 0x%06X: \n\t", offset);
 }
 
 /**
