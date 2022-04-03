@@ -143,6 +143,7 @@ namespace Ship {
 
             ToLoad->bHasResourceLoaded = true;
             ToLoad->resource = Res;
+            ResourceCache.erase(Res->file->path);  // Prevent infinite loop in destructor Shipwright#28
             ResourceCache[Res->file->path] = Res;
 
             SPDLOG_DEBUG("Loaded Resource {} on ResourceMgr thread", ToLoad->file->path);
